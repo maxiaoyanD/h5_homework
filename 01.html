@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一次作业</title>
+    <style>
+    .font{
+        width:200px;
+        height: 15px;
+    }
+    </style>
+</head>
+<body>
+<form action="#">
+    <h1>毕业生信息</h1>
+    <fieldset style="width: 500px">
+        <legend style="color: red">
+            学生信息
+        </legend>
+        姓名<input type="text" name="name" class="font" placeholder="请输入姓名" required > <span style="color:red">*</span>
+        <br>
+        学号<input type="text" name="num" class="font" placeholder="请输入学号" required > <span style="color:red">*</span>
+        <br>
+        手机<input type="tel" name="tel" class="font" placeholder="请输入手机号" required > <span style="color:red">*</span>
+        <br>
+        邮箱<input type="email" name="email" class="font" placeholder="请输入邮箱地址" required > <span style="color:red">*</span>
+    </fieldset>
+    <fieldset style="margin-top:30px;width: 500px">
+        <legend style="color: red ">录取情况</legend>
+        录取学校<input type="text" class="font" name="sch">
+        <br>
+        入学成绩<input type="text" class="font" name="gra">
+        <br>
+        入学时间<input type="date" class="font" name="date">
+    </fieldset>
+    <input type="submit" name="sub" style="margin-top:10px">
+</form>
+</body>
+</html>
