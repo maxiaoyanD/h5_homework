@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #sea{
+            color:honeydew;
+            width:100px;
+            height: 40px;
+        }
+        #inp{
+            width:200px;
+            height: 50px;
+        }
+        #re{
+            display: none;
+        }
+        .focus{
+            outline:none;
+            border: 1px solid chocolate;
+        }
+        .focus1{
+            outline: none;
+        }
+        #div{
+            width: 300px;  
+        }
+        .div1{
+            background: darkgrey;
+            font-size: 14px;
+            margin-right:5px;
+            margin-top: 5px; 
+            float:left;    
+        }
+        #x{
+            width: 20px;
+            height: 20px;
+            margin-left:10px;
+            margin-top: 5px;  
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="search" name="goods" placeholder="请输入想查找的商品" id="inp">
+    <button id="sea">搜索</button>
+    <br>
+    <p id='re'>最近搜索</p>
+    <div id="div"><button id="x">x</button></div>    
+    <br>    
+</body>
+<script>   
+    var goods = document.getElementById('inp');
+    var btn = document.getElementById('sea');
+    var record = document.getElementById('re');
+    var div = document.getElementById('div');
+    var x = document.getElementById('x');
+    x.setAttribute('onclick','de()');
+    goods.setAttribute('onclick','one()');
+    btn.setAttribute('onclick','two()');
+    function de(){
+        localStorage.clear();
+        div.innerHTML = " ";
+    }
+    function one(){
+        goods.setAttribute('class','focus');    
+    }
+    function two(){ 
+        goods.setAttribute('class','focus1'); 
+        if(localStorage.length == 0){
+            record.style.display = 'block';
+            x.style.display = 'block';
+        }
+        var div1 = document.createElement('div');
+        div.insertBefore( div1, div.children[0] );
+        div1.setAttribute('class','div1');
+        var now = new Date().getTime();
+        localStorage.setItem(now,goods.value);
+        div1.innerHTML = localStorage.getItem(now);  
+    }
+    window.onload = function(){
+        if(localStorage.length!=0){
+            record.style.display = 'block';
+            x.style.display = 'block';
+        }
+        for(var i=0;i<localStorage.length;i++){
+            var div1 = document.createElement('div');
+            div.insertBefore( div1, div.children[0] );
+            div1.setAttribute('class','div1');
+            div1.innerHTML = localStorage.getItem(localStorage.key(i));
+        }
+    }
+</script>
+</html>
