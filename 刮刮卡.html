@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border: 2px solid orange;
+            margin-left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id='canvas' width="690" height="330"></canvas>
+</body>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var img = new Image();
+        img.src='images/img'+parseInt(Math.random()*10)+'.jpg';
+        console.log(img.src);
+        img.onload = function(){
+            var image = context.createPattern(img,'no-repeat');
+            context.fillStyle=image;//目标对象
+            context.fillRect(0,0,690,330);
+        }
+        context.globalCompositeOperation = 'destination-over';
+        context.fillStyle='gray';
+        context.fillRect(0,0,690,330);//源对象
+        
+        
+    }
+</script>
+</html>

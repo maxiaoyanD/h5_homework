@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    //每一秒重新绘制一次画布
+    function timer() {
+        //1、清空画布
+        context.clearRect(0,0,500,500);
+        //2、绘制表盘
+        context.beginPath();
+        context.lineWidth = 10;
+        context.strokeStyle = 'orange';
+        context.arc(250,250,210,0,2*Math.PI);
+        context.stroke();
+        context.closePath();
+        //3、绘制分针刻度
+        for(var i=0;i<60;i++){
+            context.save();
+            context.beginPath();
+            //设置坐标系原点
+            context.translate(250,250);
+            //坐标系旋转*****************
+            context.rotate(6*(Math.PI/180)*i);
+            //绘制线
+            context.strokeStyle='#000';
+            context.lineWidth=4;
+            context.moveTo(0,175);
+            context.lineTo(0,190);
+            context.stroke();
+            context.closePath();
+            context.restore();
+        }
+        //4、绘制时针的刻度
+        for(var i=0;i<12;i++){
+            context.save();
+            context.beginPath();
+            //设置坐标系原点
+            context.translate(250,250);
+            //坐标系旋转*****************
+            context.rotate(30*(Math.PI/180)*i);
+            //绘制线
+            context.strokeStyle='#f00';
+            context.lineWidth=6;
+            context.moveTo(0,165);
+            context.lineTo(0,190);
+            context.stroke();
+            context.closePath();
+            
+            context.restore();
+        }   
+        //5、绘制数字
+        for(var i=0;i<12;i++){
+            context.save();
+            context.beginPath();
+            //设置坐标系原点
+            context.translate(250,250);
+            //坐标系旋转*****************
+            context.textAline='center';
+            context.font = 'italic 20px 微软雅黑'
+            context.fillStyle = 'green';
+            context.textBaseline='middle';
+            context.fillText(i==0?12:i,145*Math.sin(i*Math.PI/6),-145*Math.cos(i*Math.PI/6));
+            context.closePath();
+            context.restore();
+        }   
+        //6、绘制时针分针秒针
+        var now = new Date();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+        //绘制时针
+        context.save();
+        context.translate(250,250);
+        context.rotate((h*30+m*0.5+180)*Math.PI/180);
+        context.beginPath();
+        context.moveTo(0,0);
+        context.lineTo(0,80);
+        context.lineWidth=5;
+        context.strokeStyle="green";
+        context.lineCap='round';
+        context.stroke();
+        context.closePath();
+        context.restore();
+        //绘制分针
+        context.save();
+        context.translate(250,250);
+        context.rotate((m/5*30+s/5*0.5+180)*Math.PI/180);
+        context.beginPath();
+        context.moveTo(0,0);
+        context.lineTo(0,105);
+        context.strokeStyle='blue';
+        context.lineCap='square';
+        context.lineWidth=5;
+        context.stroke();
+        context.closePath();
+        context.restore();
+        //绘制秒针
+        context.save();
+        context.translate(250,250);
+        context.rotate((s/5*30+180)*Math.PI/180);
+        context.beginPath();
+        context.moveTo(0,0);
+        context.lineTo(0,120);
+        context.strokeStyle='yellow';
+        context.lineWidth=5;
+        context.stroke();
+        context.closePath();
+        context.restore();        
+    }
+    timer();
+    setInterval(timer, 1000);
+</script>
+</body>
+</html>
