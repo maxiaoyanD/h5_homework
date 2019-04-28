@@ -8,29 +8,83 @@
     <style>
         #canvas{
             border: 2px solid orange;
-            margin-left: 300px;
+            position: absolute;
+            top:0px;
+            left: 300px;
+        }
+        #yuan{
+            border: 2px solid orange;
+            position: absolute;
+            top:0px;
+            left: 300px;
         }
     </style>
 </head>
 <body>
     <canvas id='canvas' width="690" height="330"></canvas>
+    <canvas id='yuan' width="690" height="330"></canvas>
 </body>
 <script>
-    window.onload = function(){
-        var canvas = document.getElementById('canvas');
-        var context = canvas.getContext('2d');
-        var img = new Image();
-        img.src='images/img'+parseInt(Math.random()*10)+'.jpg';
-        console.log(img.src);
-        img.onload = function(){
-            var image = context.createPattern(img,'no-repeat');
-            context.fillStyle=image;//目标对象
-            context.fillRect(0,0,690,330);
-        }
-        context.globalCompositeOperation = 'destination-over';
+    window.onload = function(ev){
+        var cav = document.getElementById('canvas');
+        var ctx = cav.getContext('2d');
+        var image = new Image();
+        image.src='images/img'+parseInt(Math.random()*10)+'.jpg';
+        console.log(image.src);
+        image.onload = function(){
+            var img = ctx.createPattern(image,'no-repeat');
+            ctx.fillStyle= img ;//目标对象
+            ctx.fillRect(0, 0, 690, 330);
+
+        };
+        var cs = document.getElementById('yuan');
+        var context = cs.getContext('2d');
         context.fillStyle='gray';
         context.fillRect(0,0,690,330);//源对象
         
+        context.globalCompositeOperation = 'destination-out';
+        
+        var tag = false;
+        //鼠标点上
+        cs.onmousedown=function(ev){
+            var x=ev.clientX - 300;
+            var y=ev.clientY ;
+
+            context.beginPath();
+            context.arc(x, y, 35, 0,2*Math.PI);
+            context.fill();
+            context.closePath();
+            tag=true;
+        };    
+        //鼠标移动
+        cs.onmousemove = function(ev){
+            if(tag){
+                var x=ev.clientX - 300;
+                var y=ev.clientY ;
+                context.beginPath();
+                context.arc(x, y, 35, 0,2*Math.PI);
+                context.fill();
+                context.closePath();
+                tag=true; 
+            }
+        }
+        //鼠标放开
+        cs.onmouseup = function(){
+            tag = false;
+            var area=0;
+            var imageData = context.getImageData(0,0,690,330);
+            for(var i=0;i<imageData.data.length;i++){
+                if(imageData.data[i]==0){
+                    area++;
+                } 
+            }
+            //清空
+            if(area >= imageData.data.length*0.85){
+                context.fillRect(0,0,690,330);
+                context.fill();
+               
+            }
+        }
         
     }
 </script>
