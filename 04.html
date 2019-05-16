@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:400px;
+            height:500px ;
+            border: 3px solid gainsboro;
+           position: relative;
+            margin-left: 200px;
+        }
+        #images{
+            overflow: hidden;
+            width: 400px;
+            height: 300px;    
+        }
+        img{
+            width: 400px;
+            height: 300px;
+            transition: transform 2s;
+        }
+        #month{
+            width:50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: orangered;
+            font-size: 14px;
+            color:white;
+            text-align: center;
+            padding-top: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        #back{
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color:rgba(129, 129, 129, 0.5);
+            display: none;
+        }
+        #box:hover{
+            border: 3px solid rgb(194, 193, 193);
+            box-shadow: 2px 2px gray; 
+        }
+        #box:hover > #images img{
+            overflow: hidden;
+            transform: scale(1.6,1.6);
+        }
+        #box:hover > #back{
+            display: block;
+        }
+        #box:hover > #font{
+            position: absolute;
+            top:100px;
+            display: block;
+        }
+        #box:hover > #font #p3{
+             /* display: block; */
+             opacity: 1;
+        }
+        #font{
+            width:400px;
+            height: 400px;
+            transition: top 2s;
+            position: absolute;
+            top:260px;
+            left: 0px;
+        }
+        #picture{
+            width:80px;
+            height: 40px;
+            background-color:orangered;
+            font-size: 14px;
+            color:white;
+            text-align: center;
+            line-height: 40px; 
+            margin-top:0px; 
+        } 
+        #center{
+            height: 400px;
+            background: white;
+            position: relative;
+        }
+        #p1{
+            font-family: '黑体';
+            font-size: 24px;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        #p2{
+            font-family: '黑体';
+            font-size: 20px;
+            position: absolute;
+            left: 10px;
+            top: 50px;
+            color: orangered;
+        }
+        #p3{
+            font-family: '黑体';
+            font-size: 19px;
+            line-height: 25px;
+            transition: opacity 1s;
+            position: absolute;
+            left: 10px;
+            top: 70px;
+            color: rgb(134, 133, 133);
+            /* display: none;    */
+            opacity: 0;
+        }
+        #bottom{
+            width: 400px;
+            height: 20px;
+            font-size: 12px;
+            color: rgb(175, 173, 173);
+            padding-left: 10px;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            transition-delay: 5s;
+        }
+   </style>
+</head>
+<body>
+    <div id='box'>
+        <div id="images">
+            <img src="images/zhanqiao.jpg" alt="图片">    
+        </div>
+        <div id="back"></div>
+        <div id="month">&nbsp 15&nbsp&nbsp&nbsp&nbsp &nbsp5月&nbsp</div>   
+        <div id='font'>
+            <div id="picture">照片</div>
+            <div id="center">
+                <div id="p1">青岛栈桥</div>
+                <div id='p2'>国家AAA级旅游景区</div>
+                <div id='p3'>
+                    青岛栈桥是青岛海滨风景区的景点之一，是国务院于1982年首批公布
+                    的国家级风景名胜区。青岛栈桥位于游人如织的青岛中山路南端，桥身从海岸探入
+                    弯月般的青岛湾深处。桥身供游人参观并在此停靠旅游船，由此乘船
+                    可看海上青岛。
+                </div>
+            </div>    
+        </div>
+        <div id='bottom'>
+            <div>10分钟前 &nbsp&nbsp123评论</div>
+        </div>
+        
+    </div>
+</body>
+</html>
