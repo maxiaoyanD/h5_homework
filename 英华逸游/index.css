@@ -96,8 +96,8 @@ body{
     height: 80px;
     border-bottom: 2px ;
 }
-.navbar-nav> li:first-child{
-    color: orangered;
+
+.navbar-nav> li:hover{
     border-bottom: 2px solid orangered;
 }
 .navbar-inverse .navbar-nav>li>a{
@@ -108,7 +108,9 @@ body{
     text-align: center;
     line-height: 50px;
 }
-
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: orangered;
+}
 /*轮播图*/
 /* .carousel{
     height:420px;
